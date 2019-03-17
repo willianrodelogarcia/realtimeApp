@@ -1,20 +1,31 @@
+const path = require('path');
 const express = require('express');
 
-const app =  express();
+const SocketIO = require('socket.io');
 
-const SokectIO = require('socket.io');
+
+
+const app = express();
+
+
+//configuracion
 
 app.set('port', process.env.PORT || 3000);
 
 
+//static files
+app.use(express.static(path.join(__dirname,'public')));
+
+
 const server = app.listen(app.get('port'),()=>{
-    console.log('Server is Running...', app.get('port'))
+    console.log('server ON ...',app.get('port'));
 });
 
+const io = SocketIO(server);
 
-const io = SokectIO(server);
-
-
-io.on('connection',()=>{
-    console.log('conexion ON')
+io.on('connection',(socket)=>{
+    console.log(socket.id)
+    socket.on('noti',(data)=>{
+        io.sockets.emit('mensaje',data);
+    });
 });

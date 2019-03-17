@@ -1,5 +1,5 @@
 {
-  "name": "realTimeSocket",
+  "name": "notificacionNode",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,11 +10,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
   "dependencies": {
     "express": "^4.16.4",
     "socket.io": "^2.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.10"
   }
 }
