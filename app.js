@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 const server = app.listen(app.get('port'),()=>{
     console.log('server ON ...',app.get('port'));
+    console.log(path.join(__dirname,'public'))
 });
 
 const io = SocketIO(server);
