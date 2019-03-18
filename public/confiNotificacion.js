@@ -14,3 +14,8 @@ socket.on('mensaje',(data)=>{
     console.log(data.message)
 });
 
+socket.on('usuariosConectados',(userCon)=>{
+    document.getElementById('user').innerHTML = 'Users connected: ' + userCon;
+    
+});
+

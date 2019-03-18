@@ -23,10 +23,19 @@ const server = app.listen(app.get('port'),()=>{
 });
 
 const io = SocketIO(server);
-
+var numConnet = 0;
 io.on('connection',(socket)=>{
     console.log(socket.id)
+    numConnet++;
     socket.on('noti',(data)=>{
         io.sockets.emit('mensaje',data);
+    });
+
+    io.sockets.emit('usuariosConectados', numConnet);
+
+
+    socket.on('disconnect',()=>{
+        numConnet--;
+        io.sockets.emit('usuariosConectados',numConnet);
     });
 });
