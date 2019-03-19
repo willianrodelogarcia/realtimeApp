@@ -59,11 +59,11 @@ router.get('/api/huespeds',(req,res)=>{
     });
 
     mssql.execSqlBatch(request);
-})
+});
 
 
 router.post('/api/login',(req,res)=>{
-    var { IdentificacionHusped } = req.body;
+    const { IdentificacionHusped } = req.body;
     var huespedData = [];
     var request = new Request("select * from huesped where identificacionhusped ="+IdentificacionHusped,(err,rowCount,rows)=>{
         if(err){
