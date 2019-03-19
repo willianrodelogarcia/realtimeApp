@@ -57,6 +57,8 @@ router.get('/api/huespeds',(req,res)=>{
     request.on('done',()=>{
         res.status(200).json(huespedData)
     });
+
+    request.execSqlBatch(request)
 })
 
 
