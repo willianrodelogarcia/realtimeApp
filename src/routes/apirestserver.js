@@ -7,6 +7,9 @@ const router = express.Router();
 
 //const mssql = require('../database');
 
+router.get('/ambientes',(req,res)=>{
+    res.send("Hola")
+});
 
 /*router.get('/ambientes',(req,res)=>{
     var serviceData = []
