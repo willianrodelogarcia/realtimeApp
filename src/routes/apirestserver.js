@@ -8,10 +8,6 @@ const router = express.Router();
 //const mssql = require('../database');
 
 
-router.get('/',(req,res)=>{
-    res.send("Hola")
-});
-
 /*router.get('/ambientes',(req,res)=>{
     var serviceData = []
     var request = new Request("select * from ambientes",(err,rowCount,rows)=>{
