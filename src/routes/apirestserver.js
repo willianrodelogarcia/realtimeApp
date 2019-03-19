@@ -62,10 +62,10 @@ router.get('/api/huespeds',(req,res)=>{
 })
 
 
-router.post('/login',(req,res)=>{
+router.post('/api/login',(req,res)=>{
     var { IdentificacionHusped } = req.body;
     var huespedData = [];
-    var request = new Request("select * from huesped where IdentificacionHusped ="+IdentificacionHusped,(err,rowCount,rows)=>{
+    var request = new Request("select * from huesped where identificacionhusped ="+IdentificacionHusped,(err,rowCount,rows)=>{
         if(err){
             res.json({"HuespedErr":err})
         }
