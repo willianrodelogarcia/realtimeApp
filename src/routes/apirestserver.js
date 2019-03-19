@@ -58,7 +58,7 @@ router.get('/api/huespeds',(req,res)=>{
         res.status(200).json(huespedData)
     });
 
-    request.execSqlBatch(request)
+    mssql.execSqlBatch(request);
 })
 
 
