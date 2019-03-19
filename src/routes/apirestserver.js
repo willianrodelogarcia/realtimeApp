@@ -7,11 +7,11 @@ const router = express.Router();
 
 //const mssql = require('../database');
 
-router.get('/ambientes',(req,res)=>{
-    res.send("Hola")
-});
-
 /*router.get('/ambientes',(req,res)=>{
+    res.send("Hola")
+});*/
+
+router.get('/ambientes',(req,res)=>{
     var serviceData = []
     var request = new Request("select * from ambientes",(err,rowCount,rows)=>{
         if(err){
@@ -37,7 +37,7 @@ router.get('/ambientes',(req,res)=>{
 
     mssql.execSqlBatch(request);
 
-});*/
+});
 
 
 module.exports = router;
