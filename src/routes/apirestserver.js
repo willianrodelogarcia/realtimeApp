@@ -7,11 +7,8 @@ const router = express.Router();
 
 const mssql = require('../database');
 
-/*router.get('/ambientes',(req,res)=>{
-    res.send("Hola")
-});*/
 
-router.get('/ambientes',(req,res)=>{
+router.get('/api/ambientes',(req,res)=>{
     var serviceData = []
     var request = new Request("select * from ambientes",(err,rowCount,rows)=>{
         if(err){
@@ -38,6 +35,55 @@ router.get('/ambientes',(req,res)=>{
     mssql.execSqlBatch(request);
 
 });
+
+router.get('/api/huespeds',(req,res)=>{
+
+    var huespedData = [];
+    var request = new Request("select * from huesped",(err,rowCount,rows)=>{
+        if(err){
+            res.json({"HuespedErr":err})
+        }
+    });
+
+    request.on('row',(columns)=>{
+        var item = {}
+        columns.forEach(column => {
+            item[column.metadata.colName] = column.value;
+        });
+
+        huespedData.push(item)
+    });
+
+    request.on('done',()=>{
+        res.status(200).json(huespedData)
+    });
+})
+
+
+router.post('/login',(req,res)=>{
+    var { identificacion } = req.body;
+    var huespedData = [];
+    var request = new Request("select * from huesped where IdentificacionHusped ="+identificacion,(err,rowCount,rows)=>{
+        if(err){
+            res.json({"HuespedErr":err})
+        }
+    });
+
+    request.on('row',(columns)=>{
+        var item = {}
+        columns.forEach(column => {
+            item[column.metadata.colName] = column.value;
+        });
+
+        huespedData.push(item)
+    });
+
+    request.on('done',()=>{
+        res.status(200).json(huespedData)
+    });
+    
+});
+
 
 
 module.exports = router;
