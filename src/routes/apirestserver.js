@@ -5,11 +5,14 @@ var Request = require('tedious').Request;
 const router = express.Router();
 
 
-const mssql = require('../database');
+//const mssql = require('../database');
 
 
+router.get('/',(req,res)=>{
+    res.send("Hola")
+});
 
-router.get('/ambientes',(req,res)=>{
+/*router.get('/ambientes',(req,res)=>{
     var serviceData = []
     var request = new Request("select * from ambientes",(err,rowCount,rows)=>{
         if(err){
@@ -35,7 +38,7 @@ router.get('/ambientes',(req,res)=>{
 
     mssql.execSqlBatch(request);
 
-});
+});*/
 
 
 module.exports = router;
