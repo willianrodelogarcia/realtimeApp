@@ -10,6 +10,7 @@ const app = express();
 
 //configuracion
 app.set('port', process.env.PORT || 3000);
+app.use(express.json()); 
 
 //Routers
 app.use(require('./src/routes/apirestserver'));
