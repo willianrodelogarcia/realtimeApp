@@ -98,5 +98,61 @@ router.post('/api/login',(req,res)=>{
 });
 
 
+router.get('/api/productos',(req,res)=>{
+
+    var productoData = []
+    var request = new Request("select * from roomService",(err,rowCount,rows)=>{
+        if(err){
+            res.json({"ErrorProductos":err})
+        }
+    });
+
+    request.on('row',(columns)=>{
+        var item = {}
+
+        columns.forEach(column => {
+            item[column.metadata.colName] = column.value;
+        });
+
+        productoData.push(item)
+    });
+
+    request.on('done',()=>{
+        res.status(200).json(productoData)
+    });
+
+
+    mssql.execSqlBatch(request)
+});
+
+
+router.get('/api/mantenimietos',(req,res)=>{
+
+    var mantData = []
+    var request = new Request("select * from Mantenimiento",(err,rowCount,rows)=>{
+        if(err){
+            res.json({"MantenimientoErr":err})
+        }
+    });
+
+    request.on('row',(columns)=>{
+        var item = {}
+
+        columns.forEach(column => {
+            item[column.metadata.colName] = column.value;
+        });
+
+        mantData.push(item)
+    });
+
+    request.on('done',()=>{
+        res.status(200).json(mantData)
+    });
+
+    mssql.execSqlBatch(request)
+
+})
+
+
 
 module.exports = router;
