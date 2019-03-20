@@ -65,7 +65,7 @@ router.get('/api/huespeds',(req,res)=>{
 router.post('/api/login',(req,res)=>{
     const { IdentificacionHusped } = req.body;
     var huespedData = [];
-    var request = new Request("select * from huesped where identificacionhusped ="+IdentificacionHusped,(err,rowCount,rows)=>{
+    var request = new Request("select * from huesped where IdentificacionHusped ="+IdentificacionHusped,(err,rowCount,rows)=>{
         if(err){
             res.json({"HuespedErr":err})
         }
@@ -81,7 +81,16 @@ router.post('/api/login',(req,res)=>{
     });
 
     request.on('done',()=>{
-        res.status(200).json(huespedData)
+        
+        if(huespedData.length === 0){
+            
+            res.status(200).json({
+                "Status":"NoUser"
+            })
+        }else{ 
+            res.status(200).json({"Status":"Ok",huespedData})
+        }
+        
     });
 
     mssql.execSqlBatch(request)
