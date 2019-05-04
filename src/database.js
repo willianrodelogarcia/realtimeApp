@@ -56,7 +56,7 @@ var config = {
       type: 'default',
       options: {
         userName: 'conserje',
-        password: 'P_assw0rd1' 
+        password: '*********' 
       }
     }
     
